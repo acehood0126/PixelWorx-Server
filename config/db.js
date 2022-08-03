@@ -1,0 +1,22 @@
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
+  } catch (error) {
+    console.log(`Error: ${error.message}`.red.underline.bold);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+// const uri = "mongodb+srv://david85:<password>@cluster0.cxttl.mongodb.net/?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+// const collection = client.db("test").collection("devices");
+// // perform actions on the collection object
+//     client.close();
+// });
